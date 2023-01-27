@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MvcSeriesPersonajesCRP.Models.Serie>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Series</h1>
+
+<a asp-controller="Series" asp-action="AddSeries" class="btn btn-outline-info" >Añadir Serie</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdSerie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Anyo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdSerie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                    <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Imagen)">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Anyo)
+            </td>
+            <td>
+                <a asp-controller="Series" asp-action="Personajes" asp-route-idserie="@item.IdSerie" class="btn btn-outline-dark">Personajes</a>
+           
+                <a asp-controller="Series" asp-action="Details" asp-route-idserie="@item.IdSerie" class="btn btn-outline-info">Detalles</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
